@@ -132,6 +132,8 @@ const getBadgeColors = (category: string): string => {
       return "border-cyan-300 bg-cyan-100 text-cyan-800 dark:border-cyan-700/30 dark:bg-cyan-900/30 dark:text-cyan-300";
     case "auth":
       return "border-green-300 bg-green-100 text-green-800 dark:border-green-700/30 dark:bg-green-900/30 dark:text-green-300";
+    case "payments":
+      return "border-yellow-300 bg-yellow-100 text-yellow-800 dark:border-yellow-700/30 dark:bg-yellow-900/30 dark:text-yellow-300";
     case "dbSetup":
       return "border-pink-300 bg-pink-100 text-pink-800 dark:border-pink-700/30 dark:bg-pink-900/30 dark:text-pink-300";
     case "addons":
@@ -140,9 +142,6 @@ const getBadgeColors = (category: string): string => {
       return "border-teal-300 bg-teal-100 text-teal-800 dark:border-teal-700/30 dark:bg-teal-900/30 dark:text-teal-300";
     case "packageManager":
       return "border-orange-300 bg-orange-100 text-orange-800 dark:border-orange-700/30 dark:bg-orange-900/30 dark:text-orange-300";
-    case "git":
-    case "install":
-      return "border-gray-300 bg-gray-100 text-gray-700 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400";
     default:
       return "border-gray-300 bg-gray-100 text-gray-800 dark:border-gray-700/30 dark:bg-gray-900/30 dark:text-gray-300";
   }
@@ -833,7 +832,12 @@ const generateCommand = (stackState: StackState): string => {
     if (!checkDefault("dbSetup", stackState.dbSetup)) {
       flags.push(`--db-setup ${stackState.dbSetup}`);
     }
-  } else {
+  }
+
+  if (!checkDefault("payments", stackState.payments)) {
+    if (stackState.payments === "true" && DEFAULT_STACK.payments === "false") {
+      flags.push("--payments true");
+    }
   }
 
   if (!checkDefault("packageManager", stackState.packageManager)) {
@@ -1509,14 +1513,16 @@ const StackBuilder = () => {
           if (
             (category === "git" ||
               category === "install" ||
-              category === "auth") &&
+              category === "auth" ||
+              category === "payments") &&
             techId === "false"
           ) {
             update[catKey] = "true";
           } else if (
             (category === "git" ||
               category === "install" ||
-              category === "auth") &&
+              category === "auth" ||
+              category === "payments") &&
             techId === "true"
           ) {
             update[catKey] = "false";

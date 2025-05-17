@@ -311,7 +311,7 @@ export const TECH_OPTIONS = {
   ],
   payments: [
     {
-      id: "stripe",
+      id: "true",
       name: "Stripe",
       description: "Payment processing",
       icon: "/icon/stripe.svg",
@@ -561,7 +561,7 @@ export const PRESET_TEMPLATES = [
       orm: "drizzle",
       dbSetup: "turso",
       auth: "true",
-      payments: "stripe",
+      payments: "true",
       packageManager: "bun",
       addons: ["pwa", "biome", "husky", "tauri", "starlight", "turborepo"],
       examples: ["todo", "ai"],
