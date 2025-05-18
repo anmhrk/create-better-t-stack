@@ -15,7 +15,6 @@ import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 import { DEFAULT_CONFIG } from "./constants";
 import { createProject } from "./helpers/create-project";
-import { setupDatabase } from "./helpers/db-setup";
 import { gatherConfig } from "./prompts/config-prompts";
 import { getProjectName } from "./prompts/project-name";
 import type {

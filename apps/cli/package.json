@@ -50,7 +50,8 @@
     "check-types": "tsc --noEmit",
     "check": "biome check --write .",
     "test": "vitest run",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "test-stripe": "bun run src/index.ts my-better-t-app --yes --payments true --no-git --no-install"
   },
   "dependencies": {
     "@clack/prompts": "^0.10.1",
