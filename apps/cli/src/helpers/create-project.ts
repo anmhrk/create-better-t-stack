@@ -14,6 +14,7 @@ import { installDependencies } from "./install-dependencies";
 import { displayPostInstallInstructions } from "./post-installation";
 import { initializeGit, updatePackageConfigurations } from "./project-config";
 import { setupRuntime } from "./runtime-setup";
+import { setupStripe } from "./stripe-setup";
 import {
 	copyBaseTemplate,
 	handleExtras,
@@ -61,6 +62,10 @@ export async function createProject(options: ProjectConfig) {
 
 		if (!isConvex && options.auth) {
 			await setupAuth(options);
+		}
+
+		if (options.payments) {
+			await setupStripe(options);
 		}
 
 		await handleExtras(projectDir, options);
