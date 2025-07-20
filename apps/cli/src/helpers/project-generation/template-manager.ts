@@ -57,7 +57,6 @@ export async function copyBaseTemplate(
 ): Promise<void> {
 	const templateDir = path.join(PKG_ROOT, "templates/base");
 	await processAndCopyFiles(["**/*"], templateDir, projectDir, context);
-	await fs.ensureDir(path.join(projectDir, "packages"));
 }
 
 export async function setupFrontendTemplates(

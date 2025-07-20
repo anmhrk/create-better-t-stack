@@ -29,7 +29,7 @@ const TITLE_TEXT = `
  `;
 
 export function meta({}: Route.MetaArgs) {
-  return [{ title: "My App" }, { name: "description", content: "My App" }];
+  return [{ title: "{{projectName}}" }, { name: "description", content: "{{projectName}} is a web application" }];
 }
 
 export default function Home() {
